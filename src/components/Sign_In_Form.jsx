@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login, fetchProfile } from "../features/auth/authActions";
-import "../main.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 export default function SignInForm() {
   const [email, setEmail] = useState("");
@@ -29,7 +30,7 @@ export default function SignInForm() {
 
   return (
     <section className="sign-in-content">
-      <i className="fa fa-user-circle sign-in-icon"></i>
+      <FontAwesomeIcon icon={faUserCircle} className="sign-in-icon" />
       <h1>Sign In</h1>
       <form onSubmit={handleSubmit}>
         <div className="input-wrapper">

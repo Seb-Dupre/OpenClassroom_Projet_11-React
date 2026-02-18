@@ -1,4 +1,4 @@
-import "../main.css";
+import "../styles/components/Banner.scss";
 
 const Banner = ({ subtitles, text, backgroundImage }) => {
   return (

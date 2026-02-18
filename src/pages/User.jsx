@@ -1,15 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile, updateUserName } from "../features/auth/authActions";
 import EditName from "../components/EditName";
 import AccountCard from "../components/AccountCard";
-import "../main.css";
+import "../styles/pages/User.scss";
 
 function User() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user, token, isAuthenticated } = useSelector((state) => state.auth);
+
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     if (!token || !isAuthenticated) {
@@ -26,7 +28,7 @@ function User() {
     try {
       await dispatch(updateUserName(newName));
     } catch (error) {
-      throw new Error("Erreur lors de la mise à jour");
+      console.error("Erreur lors de la mise à jour");
     }
   };
 
@@ -53,16 +55,20 @@ function User() {
   return (
     <main className="main bg-dark">
       <div className="header">
-        <h1>
-          Welcome back
-          <br />
-          {user.userName}!
-        </h1>
+        {!isEditing && (
+          <h1>
+            Welcome back
+            <br />
+            {user.userName}!
+          </h1>
+        )}
+
         <EditName
           currentUserName={user.userName}
           firstName={user.firstName}
           lastName={user.lastName}
           onSave={handleSave}
+          onEditingChange={setIsEditing}
         />
       </div>
 

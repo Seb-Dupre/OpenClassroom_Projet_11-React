@@ -1,4 +1,4 @@
-import "../main.css";
+import "../styles/components/FeatureCard.scss";
 
 const Features = ({ features }) => {
   return (

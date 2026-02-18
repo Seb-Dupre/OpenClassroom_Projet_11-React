@@ -1,10 +1,10 @@
-import "../main.css";
+import "../styles/components/Header.scss";
 import argentBankLogo from "../assets/argentBankLogo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../features/auth/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
+import { faUserCircle, faPowerOff } from "@fortawesome/free-solid-svg-icons";
 
 function Header() {
   const dispatch = useDispatch();
@@ -31,12 +31,13 @@ function Header() {
       <div>
         {!isAuthenticated ? (
           <Link className="main-nav-item" to="/SignIn">
-            <i className="fa fa-user-circle"></i> Sign In
+            <FontAwesomeIcon icon={faUserCircle} className="icon" /> Sign In
           </Link>
         ) : (
           <div className="header-logged-in">
             <Link to="/user" className="main-nav-item header-username">
-              <i className="fa fa-user-circle"></i> {user?.userName || "User"}
+              <FontAwesomeIcon icon={faUserCircle} className="icon" />{" "}
+              {user?.userName || "User"}
             </Link>
 
             <button
@@ -45,7 +46,7 @@ function Header() {
               aria-label="Logout"
               type="button"
             >
-              <FontAwesomeIcon icon={faPowerOff} />
+              <FontAwesomeIcon icon={faPowerOff} className="icon" />
             </button>
           </div>
         )}

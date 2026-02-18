@@ -1,5 +1,3 @@
-import "../main.css";
-
 function AccountCard({ title, amount, description }) {
   return (
     <section className="account">

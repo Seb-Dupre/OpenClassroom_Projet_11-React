@@ -4,6 +4,7 @@ import iconChat from "../assets/icon-chat.png";
 import iconMoney from "../assets/icon-money.png";
 import iconSecurity from "../assets/icon-security.png";
 import bankTree from "../assets/bank-tree.jpeg";
+import { useEffect } from "react";
 
 const Home = () => {
   const subtitleContent = [
@@ -11,7 +12,9 @@ const Home = () => {
     "No minimum deposit.",
     "High interest rates.",
   ];
-
+  useEffect(() => {
+    console.log("Font size de html :", getComputedStyle(document.documentElement).fontSize);
+  }, []);
   const textContent = "Open a savings account with Argent Bank today!";
 
   const featuresData = [

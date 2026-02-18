@@ -1,9 +1,10 @@
-import "../main.css";
-
-function Footer() {
-  <footer className="footer">
-    <p className="footer-text">Copyright 2020 Argent Bank</p>
-  </footer>;
-}
+import "../styles/components/Footer.scss";
 
 export default Footer;
+function Footer() {
+  return (
+    <footer className="footer">
+      <p className="footer-text">Copyright 2020 Argent Bank</p>
+    </footer>
+  );
+}

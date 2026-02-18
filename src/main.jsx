@@ -4,18 +4,18 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import AppRouter from "./routes.jsx";
-import Header from "./components/Header.jsx";
-import Footer from "./components/Footer.jsx";
 import AuthLoader from "./components/AuthLoader.jsx";
+import Layout from "./components/Layout.jsx";
+import "./styles/index.scss";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <AuthLoader />
-        <Header />
-        <AppRouter />
-        <Footer />
+        <Layout>
+          <AppRouter />
+        </Layout>
       </BrowserRouter>
     </Provider>
   </StrictMode>

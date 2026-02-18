@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateUserName } from "../features/auth/authActions";
-
-function EditName({ currentUserName, firstName, lastName }) {
+import "../styles/components/EditName.scss";
+function EditName({
+  currentUserName,
+  firstName,
+  lastName,
+  onSave,
+  onEditingChange,
+}) {
   const [isEditing, setIsEditing] = useState(false);
   const [newUserName, setNewUserName] = useState(currentUserName || "");
-
-  const dispatch = useDispatch();
-  const loading = useSelector((state) => state.auth.loading);
-  const error = useSelector((state) => state.auth.error);
 
   useEffect(() => {
     if (!isEditing) {
       setNewUserName(currentUserName || "");
     }
-  }, [currentUserName, isEditing]);
+    if (onEditingChange) {
+      onEditingChange(isEditing);
+    }
+  }, [isEditing, currentUserName, onEditingChange]);
 
   const handleEdit = () => {
     setIsEditing(true);
   };
 
   const handleSave = async () => {
-    await dispatch(updateUserName(newUserName));
+    if (newUserName.trim() === "") return;
+    await onSave(newUserName);
     setIsEditing(false);
   };
 
@@ -32,7 +36,7 @@ function EditName({ currentUserName, firstName, lastName }) {
 
   if (!isEditing) {
     return (
-      <button className="edit-button" onClick={handleEdit} disabled={loading}>
+      <button className="edit-button" onClick={handleEdit}>
         Edit Name
       </button>
     );
@@ -44,7 +48,7 @@ function EditName({ currentUserName, firstName, lastName }) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if (!loading) handleSave();
+          handleSave();
         }}
       >
         <div className="input-wrapper">
@@ -54,7 +58,6 @@ function EditName({ currentUserName, firstName, lastName }) {
             id="username"
             value={newUserName}
             onChange={(e) => setNewUserName(e.target.value)}
-            disabled={loading}
           />
         </div>
         <div className="input-wrapper">
@@ -65,20 +68,15 @@ function EditName({ currentUserName, firstName, lastName }) {
           <label htmlFor="last-name">Last name</label>
           <input type="text" id="last-name" value={lastName || ""} disabled />
         </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+
         <div className="form-buttons">
-          <button
-            type="submit"
-            className="save-button"
-            disabled={loading || newUserName.trim() === ""}
-          >
-            {loading ? "Saving..." : "Save"}
+          <button type="submit" className="save-button">
+            Save
           </button>
           <button
             type="button"
             className="cancel-button"
             onClick={handleCancel}
-            disabled={loading}
           >
             Cancel
           </button>

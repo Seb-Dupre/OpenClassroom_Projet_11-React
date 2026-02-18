@@ -1,0 +1,81 @@
+.edit-button {
+  border: none;
+  background-color: #00bc77;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 1.5rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #00995f;
+  }
+}
+
+.edit-name-form {
+  background-color: #fff;
+  color: #2c3e50;
+  padding: 2rem;
+  margin: 3rem auto 1rem;
+  max-width: 350px;
+  text-align: center;
+
+
+  h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+
+    label {
+      font-weight: bold;
+      margin-right: 1rem;
+      min-width: 120px;
+      text-align: right;
+    }
+
+    input {
+      width: 150px;
+      height: 30px; 
+      padding: 0.25rem 0.5rem;
+      font-size: 0.9rem;
+      border: 1px solid #ccc;
+
+
+      &:disabled {
+        background-color: #e0e0e0;
+        color: #555;
+      }
+    }
+  }
+
+  .form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+
+    .save-button,
+    .cancel-button {
+      width: 150px; 
+      height: 40px;
+      background-color: #00bc77;
+      color: #fff;
+      border: none;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      border-radius: 0;
+    }
+
+    .save-button:hover,
+    .cancel-button:hover {
+      background-color: #00995f;
+    }
+  }
+}
